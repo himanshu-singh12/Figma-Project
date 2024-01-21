@@ -139,6 +139,7 @@ form .input-box {
   outline: none;
   width: 100%;
   padding: 10px;
+  margin-top: 10px;
 }
 
 .input-box button {
@@ -156,7 +157,7 @@ form .input-box {
   color: red;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
   .template-shadow-container {
     visibility: hidden;
   }
@@ -185,7 +186,7 @@ form .input-box {
     padding: 50px 20px;
   }
   .main .left h1 {
-    margin-right: 80px;
+    margin-right: 165px;
   }
   .main .left ul {
     padding-left: 40px;
