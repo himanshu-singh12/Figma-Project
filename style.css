@@ -192,3 +192,17 @@ form .input-box {
     padding-left: 40px;
   }
 }
+
+
+.input-box #date {
+  padding: 5px;
+  border-radius: 4px;
+  border: 2px solid #bdbdbd;
+  background: #fff;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
