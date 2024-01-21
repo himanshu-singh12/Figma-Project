@@ -23,7 +23,7 @@
       </div>
       <div class="right">
         <h1>Create a Account</h1>
-        <form id="myForm" action="" method="" onsubmit="return validateForm()">
+        <form id="myForm" action="" method="" onsubmit="return validateForm()" novalidate>
           <div class="input-box">
             <label for="email">Enter Your Email</label>
             <input type="email" name="email" required />
@@ -99,7 +99,10 @@
           </div>
         </form>
       </div>
+
+      
     </div>
+    <div class="bottom-design"></div>
 
 
     <script>
@@ -112,7 +115,7 @@
         // Validate Email
         var email = document.forms["myForm"]["email"].value;
         if (!validateEmail(email)) {
-          document.getElementById("emailError").innerHTML = "Invalid email address";
+          document.getElementById("emailError").innerHTML = "Please add valid email address";
           return false;
         }
   
@@ -123,14 +126,14 @@
           document.getElementById("dateError").innerHTML = "Invalid date for February";
           return false;
         } else if ((date < 1 || date > 31) || (month === "April" || month === "June" || month === "Sept" || month === "Nov") && date > 30) {
-          document.getElementById("dateError").innerHTML = "Invalid date";
+          document.getElementById("dateError").innerHTML = "Please enter valid date";
           return false;
         }
   
         // Validate Password (numeric value)
         var password = document.forms["myForm"]["password"].value;
         if (!validateNumericPassword(password)) {
-          document.getElementById("passwordError").innerHTML = "Password must contain only numeric values";
+          document.getElementById("passwordError").innerHTML = "Password must have a numeric value";
           return false;
         }
   
