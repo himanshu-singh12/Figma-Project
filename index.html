@@ -4,174 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trying...</title>
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-          sans-serif;
-        font-family: "Roboto", sans-serif;
-      }
-
-      .upper {
-        position: absolute;
-        top: calc(-100vh + 40vh);
-        width: 150%;
-        height: 100vh;
-        border-radius: 100%;
-        background-color: #b8acda;
-        flex-shrink: 0;
-      }
-
-      body {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-      }
-
-      .main {
-        height: 582px;
-        width: 700px;
-        z-index: 999;
-        display: flex;
-        position: relative;
-        overflow: hidden;
-        background: #ffffff;
-        clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
-        box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.8);
-      }
-
-      .main .left {
-        width: 50%;
-        height: 100%;
-        background: url("./image\ 1.png");
-        background-size: cover;
-        padding: 50px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        color: #fff;
-      }
-
-      .left h1 {
-        color: #fff;
-        font-size: 34px;
-        font-weight: 700;
-        margin-top: 20px;
-      }
-
-      .left ul {
-        margin-top: 20px;
-        padding-left: 20px;
-      }
-
-      .left ul li {
-        list-style: decimal;
-        margin-bottom: 10px;
-        color: #fff;
-        font-size: 17px;
-        font-weight: 400;
-      }
-
-      .main .right {
-        width: 50%;
-        padding: 40px;
-      }
-
-      .main .right h1 {
-        color: #000;
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      form .input-box {
-        margin-top: 25px;
-      }
-
-      .input-box label {
-        color: #000;
-        font-size: 16px;
-        font-weight: 700;
-      }
-
-      .input-box .birth {
-        display: flex;
-        margin-top: 10px;
-      }
-
-      .input-box .seclabel {
-        color: #666;
-        font-size: 14px;
-        font-weight: 400;
-      }
-
-      .input-box select {
-        padding: 5px;
-        border-radius: 4px;
-        border: 2px solid #bdbdbd;
-        background: #fff;
-      }
-
-      .input-box input[type="email"],
-      .input-box input[type="password"] {
-        border-radius: 4px;
-        border: 2px solid #bdbdbd;
-        background: #fff;
-        outline: none;
-        width: 100%;
-        padding: 10px;
-      }
-
-      .input-box button {
-        border-radius: 4px;
-        background: #2d9cdb;
-        padding: 10px 50px;
-        outline: none;
-        border: none;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 500;
-      }
-
-      @media (max-width: 800px) {
-        .main::before {
-          visibility: hidden;
-        }
-        .main::after {
-          visibility: hidden;
-        }
-        body {
-          height: 100%;
-          overflow: auto;
-        }
-        .main {
-          flex-direction: column;
-          padding: 20px;
-          height: 100%;
-        }
-        .main .left,
-        .main .right {
-          width: 100%;
-        }
-        .main .left {
-          padding: 50px 20px;
-        }
-        .main .left ul {
-          padding-left: 40px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
     <div class="upper"></div>
+    <div class="template-shadow-container">
+      <div class="template-shadow"></div>
+    </div>
     <div class="main">
       <div class="left">
         <h1><b>Sample Heading</b></h1>
@@ -183,7 +23,7 @@
       </div>
       <div class="right">
         <h1>Create a Account</h1>
-        <form action="" method="">
+        <form id="main_form" action="" method="">
           <div class="input-box">
             <label for="email">Enter Your Email</label>
             <input type="email" name="email" required />
@@ -208,11 +48,16 @@
           <div class="input-box">
             <label for="passord">Choose a Strong Password</label>
             <input type="password" name="password" required />
+            <div class="valid" id="pass_valid"></div>
           </div>
           <div class="input-box">
-            <label for="radio">Are you an agency or individual?</label><br />
-            <input type="radio" name="radio" /> <span>Individual</span>
-            <input type="radio" name="radio" /> <span>Agency</span>
+            <div style="font-weight: bold; margin-bottom: 1rem">
+              Are you an agency or individual?
+            </div>
+            <input type="radio" name="radio" id="Individual" />
+            <label for="Individual"> Individual </label>
+            <input type="radio" name="radio" id="Agency" />
+            <label for="Agency">Agency</label>
           </div>
 
           <div class="input-box">
@@ -233,10 +78,18 @@
           select.add(option);
         }
       }
+      const pass_valid = document.getElementById("pass_valid");
+
+      const main_form = document.getElementById("main_form");
+      main_form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(e);
+        pass_valid.innerText = "not valid pssword";
+      });
 
       populateDropdown("date", 1, 31);
       populateDropdown("month", 1, 12);
-      populateDropdown("year", 1990, 2010);
+      populateDropdown("year", 1990, 2020);
     </script>
   </body>
 </html>
